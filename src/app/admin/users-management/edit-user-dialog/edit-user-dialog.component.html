@@ -1,0 +1,65 @@
+<h2 mat-dialog-title>Edit User</h2>
+<div mat-dialog-content class="dialog">
+    <form [formGroup]="form" class="form">
+        <!-- Username Field -->
+        <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+            <mat-label>Username</mat-label>
+            <input matInput [(ngModel)]="user.username" [formControl]="form.controls.usernameControl" required>
+            <mat-error *ngIf="form.controls.usernameControl.invalid">{{ getErrorMessage(form.controls.usernameControl) }}</mat-error>
+        </mat-form-field>
+        
+        <!-- First Name Field -->
+        <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+            <mat-label>First Name</mat-label>
+            <input matInput [(ngModel)]="user.firstName" [formControl]="form.controls.firstNameControl" required>
+            <mat-error *ngIf="form.controls.firstNameControl.invalid">{{ getErrorMessage(form.controls.firstNameControl) }}</mat-error>
+        </mat-form-field>
+
+        <!-- Last Name Field -->
+        <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+            <mat-label>Last Name</mat-label>
+            <input matInput [(ngModel)]="user.lastName" [formControl]="form.controls.lastNameControl" required>
+            <mat-error *ngIf="form.controls.lastNameControl.invalid">{{ getErrorMessage(form.controls.lastNameControl) }}</mat-error>
+        </mat-form-field>
+
+        <!-- Role Field (dropdown) -->
+        <mat-form-field>
+            <mat-select placeholder="Role" [(ngModel)]="user.role" [formControl]="form.controls.roleControl" required>
+                <mat-option value="admin">Admin</mat-option>
+                <mat-option value="viewer">Viewer</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.roleControl.invalid">{{ getErrorMessage(form.controls.roleControl) }}</mat-error>
+        </mat-form-field>
+
+        <!-- Department Field (dropdown) -->
+        <mat-form-field>
+            <mat-select placeholder="Department" [(ngModel)]="user.department" [formControl]="form.controls.departmentControl" required>
+                <mat-option value="Finance">Finance</mat-option>
+                <mat-option value="Health">Health</mat-option>
+                <mat-option value="Defense">Defense</mat-option>
+                <mat-option value="Transportation">Transportation</mat-option>
+                <mat-option value="Education">Education</mat-option>
+                <mat-option value="Interior or Home">Interior or Home</mat-option>
+                <mat-option value="Foreign Affairs">Foreign Affairs</mat-option>
+                <mat-option value="Trade and Industry">Trade and Industry</mat-option>
+                <mat-option value="Agriculture">Agriculture</mat-option>
+                <mat-option value="Energy">Energy</mat-option>
+                <mat-option value="Environment">Environment</mat-option>
+                <mat-option value="Justice or Legal">Justice or Legal</mat-option>
+                <mat-option value="Labor and Employment">Labor and Employment</mat-option>
+                <mat-option value="Housing and Urban Development">Housing and Urban Development</mat-option>
+                <mat-option value="Tourism and Culture">Tourism and Culture</mat-option>
+                <mat-option value="Communications and IT">Communications and IT</mat-option>
+                <mat-option value="Social Welfare">Social Welfare</mat-option>
+                <mat-option value="Research and Development">Research and Development</mat-option>
+                <mat-option value="Public Services">Public Services</mat-option>
+                <mat-option value="Immigration and Border Control">Immigration and Border Control</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.departmentControl.invalid">{{ getErrorMessage(form.controls.departmentControl) }}</mat-error>
+        </mat-form-field>
+    </form>
+</div> 
+<div mat-dialog-actions class="actions">
+  <button mat-button class="close-button" (click)="close()">Cancel</button>
+  <button mat-button class="add-button" (click)="editUser()">Add</button>
+</div>

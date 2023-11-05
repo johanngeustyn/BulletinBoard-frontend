@@ -1,0 +1,38 @@
+<h2 mat-dialog-title>Delete User</h2>
+<div mat-dialog-content class="dialog">
+    <form class="form">
+        <!-- Username Field -->
+        <mat-form-field>
+            <mat-label>Username</mat-label>
+            <input matInput [value]="user.username" disabled>
+        </mat-form-field>
+        
+        <!-- First Name Field -->
+        <mat-form-field>
+            <mat-label>First Name</mat-label>
+            <input matInput [value]="user.firstName" disabled>
+        </mat-form-field>
+
+        <!-- Last Name Field -->
+        <mat-form-field>
+            <mat-label>Last Name</mat-label>
+            <input matInput [value]="user.lastName" disabled>
+        </mat-form-field>
+
+        <!-- Role Field -->
+        <mat-form-field>
+            <mat-label>Role</mat-label>
+            <input matInput [value]="user.role.charAt(0).toUpperCase() + user.role.slice(1)" disabled>
+        </mat-form-field>
+
+        <!-- Department Field -->
+        <mat-form-field>
+            <mat-label>Department</mat-label>
+            <input matInput [value]="user.department" disabled>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button class="close-button" (click)="close()">Cancel</button>
+  <button mat-button class="add-button" (click)="deleteUser()">Delete</button>
+</div>

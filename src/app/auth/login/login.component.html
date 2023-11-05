@@ -1,0 +1,26 @@
+<div class="container">
+    <div class="login-card">
+        <div class="logo">
+            <img height="35" width="auto" alt="Logo" src="assets/logo.svg"/>
+        </div>
+        <div class="form-fields">
+            <!-- Username Field -->
+            <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+                <mat-label>Username</mat-label>
+                <input type="email" matInput [(ngModel)]="user.username" [formControl]="usernameControl" required>
+                <mat-error *ngIf="usernameControl.invalid">{{getErrorMessage(usernameControl)}}</mat-error>
+            </mat-form-field>
+
+            <!-- Password Field -->
+            <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+                <mat-label>Password</mat-label>
+                <input type="password" matInput [(ngModel)]="user.password" [formControl]="passwordControl" required>
+                <mat-error *ngIf="passwordControl.invalid">{{getErrorMessage(passwordControl)}}</mat-error>
+            </mat-form-field>
+        </div>
+
+        <div class="actions">
+            <button mat-button class="submit-button" (click)="onLogin()">Login</button>
+        </div>
+    </div>
+</div>

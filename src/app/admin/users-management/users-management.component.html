@@ -1,0 +1,49 @@
+<div class="container">
+    <a (click)="openAddUserDialog()" class="add-new-user">Add New</a>
+</div>
+<div class="users-card">  
+    <table mat-table [dataSource]="dataSource" matSort class="users-table">
+
+        <ng-container matColumnDef="username">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Username</th>
+            <td mat-cell *matCellDef="let user">{{ user.username }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="firstName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>First Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.firstName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="lastName">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Last Name</th>
+            <td mat-cell *matCellDef="let user">{{ user.lastName }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="role">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Role</th>
+            <td mat-cell *matCellDef="let user">{{ user.role.charAt(0).toUpperCase() + user.role.slice(1) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="department">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Department</th>
+            <td mat-cell *matCellDef="let user">{{ user.department }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Options</th>
+            <td mat-cell *matCellDef="let user">
+                <span (click)="editUser(user._id)" class="user-option">
+                    <img height="15" width="auto" alt="Edit" src="assets/icons/edit.svg" />
+                </span>
+                
+                <span (click)="deleteUser(user._id)" class="user-option">
+                    <img height="15" width="auto" alt="Delete" src="assets/icons/delete.svg" />
+                </span>
+            </td>
+        </ng-container>    
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="users-table-header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+  

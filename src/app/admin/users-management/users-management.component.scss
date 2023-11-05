@@ -1,0 +1,43 @@
+.container {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.add-new-user {
+    display: inline-block;
+    cursor: pointer;
+    color: #fff;
+    font-size: 16px;
+    font-weight: 600;
+    background-color: #051726;
+    padding: 4px 15px 6px 15px;
+    border-radius: 20px;
+    margin: 20px 0px 0px 0px;
+}
+
+.users-card {
+    padding: 20px;
+    color: #051726;
+    background-color: white;
+    margin: 8px 0 20px 0;
+    border: none;
+    border-radius: 8px;
+    box-shadow: 0 4px 16px 0px #05172680;
+    transition: transform 0.2s;
+}
+
+.users-table {
+    color: #051726;
+}
+
+.users-table-header {
+    background-color: #e2fff6;
+    border: none;
+    border-radius: 8px !important;
+}
+
+.user-option {
+    cursor: pointer;
+    margin-left: 5px;
+    margin-right: 5px;
+}

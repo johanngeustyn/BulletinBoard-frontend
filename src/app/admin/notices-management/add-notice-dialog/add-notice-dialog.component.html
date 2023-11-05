@@ -1,0 +1,85 @@
+<h2 mat-dialog-title>Add New Notice</h2>
+<div mat-dialog-content class="dialog">
+    <form [formGroup]="form" class="form">
+        <!-- Title Field -->
+        <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+            <mat-label>Title</mat-label>
+            <input matInput [(ngModel)]="notice.title" [formControl]="form.controls.titleControl" required>
+            <mat-error *ngIf="form.controls.titleControl.invalid">{{ getErrorMessage(form.controls.titleControl) }}</mat-error>
+        </mat-form-field>
+        
+        <!-- Content Field -->
+        <mat-form-field [floatLabel]="getFloatLabelValue()" hideRequiredMarker>
+            <mat-label>Content</mat-label>
+            <textarea rows="1" matInput [(ngModel)]="notice.content" (input)="autoGrow($event)" [formControl]="form.controls.contentControl" required></textarea>
+            <mat-error *ngIf="form.controls.contentControl.invalid">{{ getErrorMessage(form.controls.contentControl) }}</mat-error>
+        </mat-form-field>
+        
+        <!-- Departments Field (multi-select) -->
+        <mat-form-field hideRequiredMarker>
+            <mat-select multiple [(ngModel)]="notice.departments" [formControl]="form.controls.departmentsControl" placeholder="Departments" required>
+                <mat-option value="Finance">Finance</mat-option>
+                <mat-option value="Health">Health</mat-option>
+                <mat-option value="Defense">Defense</mat-option>
+                <mat-option value="Transportation">Transportation</mat-option>
+                <mat-option value="Education">Education</mat-option>
+                <mat-option value="Interior or Home">Interior or Home</mat-option>
+                <mat-option value="Foreign Affairs">Foreign Affairs</mat-option>
+                <mat-option value="Trade and Industry">Trade and Industry</mat-option>
+                <mat-option value="Agriculture">Agriculture</mat-option>
+                <mat-option value="Energy">Energy</mat-option>
+                <mat-option value="Environment">Environment</mat-option>
+                <mat-option value="Justice or Legal">Justice or Legal</mat-option>
+                <mat-option value="Labor and Employment">Labor and Employment</mat-option>
+                <mat-option value="Housing and Urban Development">Housing and Urban Development</mat-option>
+                <mat-option value="Tourism and Culture">Tourism and Culture</mat-option>
+                <mat-option value="Communications and IT">Communications and IT</mat-option>
+                <mat-option value="Social Welfare">Social Welfare</mat-option>
+                <mat-option value="Research and Development">Research and Development</mat-option>
+                <mat-option value="Public Services">Public Services</mat-option>
+                <mat-option value="Immigration and Border Control">Immigration and Border Control</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.departmentsControl.invalid">{{ getErrorMessage(form.controls.departmentsControl) }}</mat-error>
+        </mat-form-field>
+        
+        
+        <!-- Priority Field (dropdown) -->
+        <mat-form-field hideRequiredMarker>
+            <mat-select placeholder="Priority" [(ngModel)]="notice.priority" [formControl]="form.controls.priorityControl" required>
+                <mat-option value="low">Low</mat-option>
+                <mat-option value="medium">Medium</mat-option>
+                <mat-option value="high">High</mat-option>
+                <mat-option value="critical">Critical</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.priorityControl.invalid">{{ getErrorMessage(form.controls.priorityControl) }}</mat-error>
+        </mat-form-field>
+        
+        <!-- Status Field (dropdown) -->
+        <mat-form-field hideRequiredMarker>
+            <mat-select placeholder="Status" [(ngModel)]="notice.status" [formControl]="form.controls.statusControl" required>
+                <mat-option value="open">Open</mat-option>
+                <mat-option value="in-progress">In-progress</mat-option>
+                <mat-option value="resolved">Resolved</mat-option>
+                <mat-option value="closed">Closed</mat-option>
+            </mat-select>
+            <mat-error *ngIf="form.controls.statusControl.invalid">{{ getErrorMessage(form.controls.statusControl) }}</mat-error>
+        </mat-form-field>
+        
+        <!-- Tags Field -->
+        <mat-form-field>
+            <mat-chip-grid #tagsGrid [(ngModel)]="notice.tags" aria-label="Enter tags">
+                <mat-chip-row *ngFor="let tag of notice.tags" (removed)="remove(tag)">
+                    {{tag}}
+                    <button matChipRemove>
+                        <mat-icon>cancel</mat-icon>
+                    </button>
+                </mat-chip-row>
+                <input [matChipInputFor]="tagsGrid" placeholder="Tags" [matChipInputSeparatorKeyCodes]="separatorKeysCodes" (matChipInputTokenEnd)="add($event)" />
+            </mat-chip-grid>
+        </mat-form-field>
+    </form>
+</div> 
+<div mat-dialog-actions class="actions">
+  <button mat-button class="close-button" (click)="close()">Cancel</button>
+  <button mat-button class="add-button" (click)="addNotice()">Add</button>
+</div>

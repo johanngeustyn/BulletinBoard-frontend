@@ -1,0 +1,39 @@
+<div class="notices-container">
+    <div class="notices-actions">
+        <div class="sort-container">
+            <select [(ngModel)]="sortField" class="sort-select">
+                <option value="priority">Priority</option>
+                <option value="status">Status</option>
+                <option value="createdAt">Date</option>
+            </select>
+            <button (click)="sortDirection = sortDirection === 'asc' ? 'desc' : 'asc'" class="sort-button">
+                Order by: {{ sortDirection.toUpperCase() }}
+            </button>
+        </div>
+        <input type="text" class="search-input" [(ngModel)]="search" placeholder="Search notices...">
+    </div>
+    <div class="notice-card" (click)="viewNotice(notice)" *ngFor="let notice of filteredNotices" [ngClass]="getPriorityClass(notice.priority)">
+        <div class="card-header">
+            <h2>{{ notice.title }}</h2>
+            <div class="card-header-meta">
+            <span class="priority"><b>Priority: </b>{{ notice.priority.charAt(0).toUpperCase() + notice.priority.slice(1) }}</span>
+            <span class="status"><b>Status: </b>{{ notice.status.charAt(0).toUpperCase() + notice.status.slice(1) }}</span>
+            </div>
+        </div>
+        <p class="notice-content">{{ notice.content }}</p>
+        <div class="departments">
+            <span class="tag-description">Departments: </span>
+            <span class="tag" *ngFor="let tag of notice.departments">{{ tag }}</span>
+        </div>
+        <div class="tags">
+            <span class="tag-description">Tags: </span>
+            <span class="tag" *ngFor="let tag of notice.tags">{{ tag }}</span>
+        </div>
+        <div class="card-footer">
+            <div class="card-footer-meta">
+                <span class="author"><b>Author: </b>{{ notice.author }}</span>
+                <span class="created-at"><b>Posted At: </b>{{ notice.createdAt }}</span>
+            </div>
+        </div>
+    </div>
+</div>

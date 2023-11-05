@@ -1,0 +1,64 @@
+<div class="container">
+    <a (click)="openAddNoticeDialog()" class="add-new-notice">Add New</a>
+</div>
+<div class="notices-card">  
+    <table mat-table [dataSource]="dataSource" matSort class="notices-table">
+
+        <ng-container matColumnDef="title">
+        <th mat-header-cell *matHeaderCellDef mat-sort-header>Title</th>
+        <td mat-cell *matCellDef="let notice">{{ notice.title }}</td>
+        </ng-container>
+    
+        <ng-container matColumnDef="content"> 
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Content</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.content }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="departments">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Departments</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.departments.join(', ') }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="tags">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Tags</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.tags.join(', ') }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="priority">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Priority</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.priority.charAt(0).toUpperCase() + notice.priority.slice(1) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="status">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Status</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.status.charAt(0).toUpperCase() + notice.status.slice(1) }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="author">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Author</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.author }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="createdAt">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Posted At</th>
+            <td mat-cell *matCellDef="let notice">{{ notice.createdAt }}</td>
+        </ng-container>
+
+        <ng-container matColumnDef="options">
+            <th mat-header-cell *matHeaderCellDef mat-sort-header>Options</th>
+            <td mat-cell *matCellDef="let notice">
+                <span (click)="editNotice(notice._id)" class="notice-option">
+                    <img height="15" width="auto" alt="Edit" src="assets/icons/edit.svg" />
+                </span>
+                
+                <span (click)="deleteNotice(notice._id)" class="notice-option">
+                    <img height="15" width="auto" alt="Delete" src="assets/icons/delete.svg" />
+                </span>
+            </td>
+        </ng-container>    
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns" class="notices-table-header"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+</div>
+  

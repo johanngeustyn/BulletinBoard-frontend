@@ -1,0 +1,44 @@
+<h2 mat-dialog-title>Delete Notice</h2>
+<div mat-dialog-content class="dialog">
+    <form class="form">
+        <!-- Title Field -->
+        <mat-form-field>
+            <mat-label>Title</mat-label>
+            <input matInput [value]="notice.title" disabled>
+        </mat-form-field>
+        
+        <!-- Content Field -->
+        <mat-form-field>
+            <mat-label>Content</mat-label>
+            <textarea matInput [value]="notice.content" disabled></textarea>
+        </mat-form-field>
+        
+        <!-- Departments Field (multi-select) -->
+        <mat-form-field>
+            <mat-label>Departments</mat-label>
+            <input matInput [value]="notice.departments.join(', ')" disabled>
+        </mat-form-field> 
+        
+        <!-- Priority Field (dropdown) -->
+        <mat-form-field>
+            <mat-label>Priority</mat-label>
+            <input matInput [value]="notice.priority.charAt(0).toUpperCase() + notice.priority.slice(1)" disabled>
+        </mat-form-field>
+        
+        <!-- Status Field (dropdown) -->
+        <mat-form-field>
+            <mat-label>Status</mat-label>
+            <input matInput [value]="notice.status.charAt(0).toUpperCase() + notice.status.slice(1)" disabled>
+        </mat-form-field>
+        
+        <!-- Tags Field -->
+        <mat-form-field>
+            <mat-label>Tags</mat-label>
+            <input matInput [value]="notice.tags.join(', ')" disabled>
+        </mat-form-field>
+    </form>
+</div>
+<div mat-dialog-actions class="actions">
+  <button mat-button class="close-button" (click)="close()">Cancel</button>
+  <button mat-button class="add-button" (click)="deleteNotice()">Delete</button>
+</div>
