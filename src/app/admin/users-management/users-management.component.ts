@@ -114,12 +114,20 @@ export class UsersManagementComponent implements OnInit {
       data: { user: user }
     });
   
-    dialogRef.afterClosed().subscribe((_id: string) => {
-      if (_id) {
-        this.userService.deleteUser(_id).subscribe(
+    dialogRef.afterClosed().subscribe((data) => {
+      console.log(data);
+      if (data.deletedUser._id) {
+        this.userService.deleteUser(data.deletedUser._id).subscribe(
           response => {
-              console.log('Success!', response);
-              this.loadUsers();
+              this.userService.updateUserNoticesAfterDelete(data.deletedUser, data.assignedUser).subscribe(
+                response => {
+                  console.log('Success!', response);
+                  this.loadUsers();
+                },
+                error => {
+                  console.error('Error occurred:', error);
+                }
+              );
           },
           error => {
               console.error('Error occurred:', error);

@@ -13,9 +13,12 @@ export class UsersService {
 
   constructor(private http: HttpClient) { }
 
-  // Viewer
   getUsers(): Observable<{ message: string, users: User[] }> {
     return this.http.get<{ message: string, users: User[] }>(this.baseUrl + '/users');
+  }
+
+  getAdminUsers(): Observable<{ message: string, users: User[] }> {
+    return this.http.get<{ message: string, users: User[] }>(this.baseUrl + '/users' + '/admin');
   }
 
   getUser(id: string): Observable<{ message: string, user: User }> {
@@ -24,6 +27,10 @@ export class UsersService {
 
   updateUser(user: User): Observable<{ message: string, user: User }> {
     return this.http.put<{ message: string, user: User }>(this.baseUrl + '/users/' + user._id, user);
+  }
+
+  updateUserNoticesAfterDelete(deletedUser: User, assignedUser: User): Observable<{ message: string }> {
+    return this.http.put<{ message: string }>(this.baseUrl + '/users/' + deletedUser._id + '/notices', { id: assignedUser._id });
   }
 
   createUser(user: User): Observable<{ message: string, user: User }> {

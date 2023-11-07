@@ -30,6 +30,15 @@
             <mat-label>Department</mat-label>
             <input matInput [value]="user.department" disabled>
         </mat-form-field>
+
+        <!-- User Field (dropdown) -->
+        <mat-form-field *ngIf="user.role === 'admin'">
+            <mat-label>Select the admin user to assign this deleted user's posts to:</mat-label>
+            <mat-select placeholder="Select User" [(ngModel)]="assignedUser._id" [formControl]="adminUsersControl" required>
+                <mat-option *ngFor="let adminUser of adminUsers" [value]="adminUser._id">{{ adminUser.firstName.concat(' ', adminUser.lastName) }}</mat-option>
+            </mat-select>
+            <mat-error *ngIf="adminUsersControl.invalid">{{ getErrorMessage(adminUsersControl) }}</mat-error>
+        </mat-form-field>
     </form>
 </div>
 <div mat-dialog-actions class="actions">
